@@ -11,7 +11,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Syne:wght@700;800&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=1.1">
 </head>
 
 <body class="site-body">
@@ -70,6 +70,16 @@
   </header>
 
   <!-- =======================================================================
+       SHARED GLOBAL SCROLL INDICATOR (FIXED AT BOTTOM-RIGHT ACROSS ALL PANELS)
+       ======================================================================= -->
+  <div class="scroll-indicator" aria-hidden="true">
+    <span class="scroll-indicator__label">Scroll to Explore</span>
+    <div class="scroll-indicator__track">
+      <div class="scroll-indicator__progress"></div>
+    </div>
+  </div>
+
+  <!-- =======================================================================
        B) MAIN HORIZONTAL SCROLL TRACK
        Contains 6 panels sitting side-by-side in a single flex row.
        Width: 600% (6 panels x 100% viewport width each)
@@ -83,7 +93,9 @@
 
       <!-- Left Column (~48% width): Eyebrow, H1, Body, Buttons -->
       <div class="hero__column hero__column--left">
-        <span class="hero__eyebrow">+ Open for projects</span>
+        <div class="hero__eyebrow">
+          <div class="hero-eyebrow-child"><span class="hero-eyebrow-child-inner"></span></div> Open for projects
+        </div>
 
         <h1 class="hero__heading">
           We <span class="hero__heading--muted">design products</span> that solve <span
@@ -97,18 +109,18 @@
 
         <div class="hero__actions">
           <a href="#cta" class="hero__btn hero__btn--primary">
-            <svg class="hero__btn-icon" viewBox="0 0 16 16" width="14" height="14" fill="currentColor"
-              aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
-                d="M2.5 3A1.5 1.5 0 001 4.5v6A1.5 1.5 0 002.5 12h1v2.5a.5.5 0 00.8.4L7.5 12h6A1.5 1.5 0 0015 10.5v-6A1.5 1.5 0 0013.5 3h-11z" />
+                d="M2.99194 16.3417C3.13897 16.7126 3.17171 17.119 3.08594 17.5087L2.02094 20.7987C1.98662 20.9655 1.99549 21.1384 2.04671 21.3008C2.09793 21.4633 2.1898 21.61 2.3136 21.727C2.43741 21.844 2.58904 21.9274 2.75413 21.9693C2.91923 22.0113 3.0923 22.0104 3.25694 21.9667L6.66994 20.9687C7.03765 20.8958 7.41846 20.9276 7.76894 21.0607C9.90432 22.0579 12.3233 22.2689 14.5991 21.6564C16.8749 21.0439 18.8612 19.6473 20.2076 17.7131C21.5541 15.7788 22.1741 13.4311 21.9582 11.0842C21.7424 8.73738 20.7046 6.54216 19.028 4.88589C17.3514 3.22962 15.1436 2.21873 12.7943 2.03159C10.445 1.84445 8.10507 2.49308 6.18738 3.86303C4.26968 5.23299 2.89747 7.23624 2.31283 9.51933C1.72819 11.8024 1.9687 14.2186 2.99194 16.3417Z"
+                stroke="#F0F2F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
             <span>Book Call</span>
           </a>
           <a href="#work" class="hero__btn hero__btn--secondary">
-            <svg class="hero__btn-icon" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor"
-              stroke-width="1.6" aria-hidden="true">
-              <path d="M1.5 8s2.5-4.5 6.5-4.5 6.5 4.5 6.5 4.5-2.5 4.5-6.5 4.5-6.5-4.5-6.5-4.5z" />
-              <circle cx="8" cy="8" r="2" />
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M12 9C12.7956 9 13.5587 9.31607 14.1213 9.87868C14.6839 10.4413 15 11.2044 15 12C15 12.7956 14.6839 13.5587 14.1213 14.1213C13.5587 14.6839 12.7956 15 12 15C11.2044 15 10.4413 14.6839 9.87868 14.1213C9.31607 13.5587 9 12.7956 9 12C9 11.2044 9.31607 10.4413 9.87868 9.87868C10.4413 9.31607 11.2044 9 12 9ZM12 4.5C17 4.5 21.27 7.61 23 12C21.27 16.39 17 19.5 12 19.5C7 19.5 2.73 16.39 1 12C2.73 7.61 7 4.5 12 4.5ZM3.18 12C3.98825 13.6503 5.24331 15.0407 6.80248 16.0133C8.36165 16.9858 10.1624 17.5013 12 17.5013C13.8376 17.5013 15.6383 16.9858 17.1975 16.0133C18.7567 15.0407 20.0117 13.6503 20.82 12C20.0117 10.3497 18.7567 8.95925 17.1975 7.98675C15.6383 7.01424 13.8376 6.49868 12 6.49868C10.1624 6.49868 8.36165 7.01424 6.80248 7.98675C5.24331 8.95925 3.98825 10.3497 3.18 12Z"
+                fill="#475367" />
             </svg>
             <span>Latest Work</span>
           </a>
@@ -117,15 +129,7 @@
 
       <!-- Right Column (~52% width): Centered Torus Image Graphic -->
       <div class="hero__column hero__column--right hero__graphic">
-        <img class="hero__graphic-img" src="assets/hero-torus.png" alt="IGWE Studio 3D Torus Graphic">
-      </div>
-
-      <!-- Scroll Indicator: Pinned to BOTTOM-RIGHT under the graphic column -->
-      <div class="hero__scroll-indicator" aria-hidden="true">
-        <div class="hero__scroll-track">
-          <div class="hero__scroll-progress"></div>
-        </div>
-        <span class="hero__scroll-label">Scroll to Explore</span>
+        <img class="hero__graphic-img" src="assets/hero-torus.png" alt="">
       </div>
 
     </section>
@@ -134,9 +138,226 @@
          PANEL 2: STRATEGY + SERVICES
          ===================================================================== -->
     <section class="hz-panel hz-panel--strategy" id="strategy" data-panel="strategy">
-      <h1 class="hz-panel__title">From Strategy To System</h1>
-      <!-- CONTENT SLOT: Future 3-column service cards go here -->
-      <div class="hz-panel__content"></div>
+
+      <!-- Left Column (~35-40% width): Heading + Two Body Paragraphs -->
+      <div class="strategy__intro">
+        <h1 class="strategy__heading">
+          From <span class="strategy__heading--muted">Strategy</span><br>
+          To <span class="strategy__heading--muted">System</span>
+        </h1>
+
+        <div class="strategy__body">
+          <p class="strategy__paragraph">
+            IGWE Studio designs digital products, UX strategy, and scalable design systems. We start with user research, not aesthetics.
+          </p>
+          <p class="strategy__paragraph">
+            Every project moves through discovery, strategy, and user testing before a single pixel is pushed. The result? Interfaces that solve real problems and design systems that grow with your team.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right Column (~60-65% width): Three Sub-Columns -->
+      <div class="strategy__columns">
+
+        <!-- Sub-Column 1: How we think -->
+        <div class="strategy__column strategy__column--think">
+          <div class="strategy__column-icon" aria-hidden="true">
+            <svg width="34" height="34" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Faceted diamond matching reference -->
+              <polygon points="11,8 18,8 18,15 13,15" fill="#FFA573" />
+              <polygon points="18,8 25,8 23,15 18,15" fill="#FF8C4B" />
+              <polygon points="4,15 11,8 13,15" fill="#FFB085" />
+              <polygon points="25,8 32,15 23,15" fill="#F06A2B" />
+              <polygon points="4,15 13,15 18,31" fill="#E84C1E" />
+              <polygon points="13,15 18,15 18,31" fill="#D94014" />
+              <polygon points="18,15 23,15 18,31" fill="#C7370D" />
+              <polygon points="23,15 32,15 18,31" fill="#BA3008" />
+              <polygon points="11,8 25,8 32,15 18,31 4,15" fill="none" stroke="#FFFFFF" stroke-width="0.8" stroke-linejoin="round" />
+              <line x1="13" y1="15" x2="18" y2="31" stroke="#FFFFFF" stroke-width="0.8" />
+              <line x1="23" y1="15" x2="18" y2="31" stroke="#FFFFFF" stroke-width="0.8" />
+              <line x1="18" y1="15" x2="18" y2="31" stroke="#FFFFFF" stroke-width="0.8" />
+              <line x1="4" y1="15" x2="32" y2="15" stroke="#FFFFFF" stroke-width="0.8" />
+              <line x1="11" y1="8" x2="13" y2="15" stroke="#FFFFFF" stroke-width="0.8" />
+              <line x1="25" y1="8" x2="23" y2="15" stroke="#FFFFFF" stroke-width="0.8" />
+              <line x1="18" y1="8" x2="18" y2="15" stroke="#FFFFFF" stroke-width="0.8" />
+            </svg>
+          </div>
+          <h2 class="strategy__column-heading">How we think</h2>
+          <ul class="strategy__column-list">
+            <li class="strategy__column-item">
+              <span class="strategy__item-bullet" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="9" cy="9" r="7.25" stroke="#E84C1E" stroke-width="1.2" stroke-dasharray="2 2" />
+                  <circle cx="9" cy="9" r="2.25" fill="#E84C1E" />
+                </svg>
+              </span>
+              <span>Research before aesthetics</span>
+            </li>
+            <li class="strategy__column-item">
+              <span class="strategy__item-bullet" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="9" cy="9" r="7.25" stroke="#E84C1E" stroke-width="1.2" stroke-dasharray="2 2" />
+                  <circle cx="9" cy="9" r="2.25" fill="#E84C1E" />
+                </svg>
+              </span>
+              <span>Iterate with real users</span>
+            </li>
+            <li class="strategy__column-item">
+              <span class="strategy__item-bullet" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="9" cy="9" r="7.25" stroke="#E84C1E" stroke-width="1.2" stroke-dasharray="2 2" />
+                  <circle cx="9" cy="9" r="2.25" fill="#E84C1E" />
+                </svg>
+              </span>
+              <span>Build systems, not just screens</span>
+            </li>
+            <li class="strategy__column-item">
+              <span class="strategy__item-bullet" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="9" cy="9" r="7.25" stroke="#E84C1E" stroke-width="1.2" stroke-dasharray="2 2" />
+                  <circle cx="9" cy="9" r="2.25" fill="#E84C1E" />
+                </svg>
+              </span>
+              <span>Design for long-term scale</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Sub-Column 2: What we do -->
+        <div class="strategy__column strategy__column--do">
+          <div class="strategy__column-icon" aria-hidden="true">
+            <svg width="34" height="34" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7 16C9 8.5 16 4.5 24.5 3C24 6 22 11 18 14.5L20.5 17L17 20.5L14.5 18C11 22 6 24 3 24.5C4.5 16 8.5 9 16 7" fill="#E84C1E" />
+              <path d="M16 16.5L31.5 32" stroke="#E84C1E" stroke-width="3" stroke-linecap="round" />
+              <path d="M14 14.5L18 18.5" stroke="#E84C1E" stroke-width="3.5" stroke-linecap="round" />
+            </svg>
+          </div>
+          <h2 class="strategy__column-heading">What we do</h2>
+          <ul class="strategy__column-list">
+            <li class="strategy__column-item">
+              <span class="strategy__item-bullet" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="9" cy="9" r="7.25" stroke="#E84C1E" stroke-width="1.2" stroke-dasharray="2 2" />
+                  <circle cx="9" cy="9" r="2.25" fill="#E84C1E" />
+                </svg>
+              </span>
+              <span>Product strategy & UX research</span>
+            </li>
+            <li class="strategy__column-item">
+              <span class="strategy__item-bullet" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="9" cy="9" r="7.25" stroke="#E84C1E" stroke-width="1.2" stroke-dasharray="2 2" />
+                  <circle cx="9" cy="9" r="2.25" fill="#E84C1E" />
+                </svg>
+              </span>
+              <span>Interface design (web & mobile)</span>
+            </li>
+            <li class="strategy__column-item">
+              <span class="strategy__item-bullet" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="9" cy="9" r="7.25" stroke="#E84C1E" stroke-width="1.2" stroke-dasharray="2 2" />
+                  <circle cx="9" cy="9" r="2.25" fill="#E84C1E" />
+                </svg>
+              </span>
+              <span>Prototyping & user testing</span>
+            </li>
+            <li class="strategy__column-item">
+              <span class="strategy__item-bullet" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="9" cy="9" r="7.25" stroke="#E84C1E" stroke-width="1.2" stroke-dasharray="2 2" />
+                  <circle cx="9" cy="9" r="2.25" fill="#E84C1E" />
+                </svg>
+              </span>
+              <span>Design systems & documentation</span>
+            </li>
+            <li class="strategy__column-item">
+              <span class="strategy__item-bullet" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="9" cy="9" r="7.25" stroke="#E84C1E" stroke-width="1.2" stroke-dasharray="2 2" />
+                  <circle cx="9" cy="9" r="2.25" fill="#E84C1E" />
+                </svg>
+              </span>
+              <span>Frontend development (Framer, React)</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Sub-Column 3: Tools we use -->
+        <div class="strategy__column strategy__column--tools">
+          <div class="strategy__column-icon" aria-hidden="true">
+            <svg width="34" height="34" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Arched bezier curve with anchor points -->
+              <path d="M5 13C12 5.5 24 5.5 31 13" stroke="#E84C1E" stroke-width="2" stroke-linecap="round" />
+              <rect x="3" y="10.5" width="5" height="5" rx="1" fill="#E84C1E" />
+              <rect x="28" y="10.5" width="5" height="5" rx="1" fill="#E84C1E" />
+              <path d="M18 8.5V14" stroke="#E84C1E" stroke-width="2" stroke-linecap="round" />
+              <!-- Pen Tool Nib with ink slit matching reference -->
+              <path d="M14 17.5L18 31.5L22 17.5C22 15.5 20.5 14 18 14C15.5 14 14 15.5 14 17.5Z" fill="#E84C1E" />
+              <circle cx="18" cy="22" r="1.3" fill="#FFFFFF" />
+              <line x1="18" y1="23.3" x2="18" y2="31.5" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" />
+            </svg>
+          </div>
+          <h2 class="strategy__column-heading">Tools we use</h2>
+          <ul class="strategy__column-list">
+            <li class="strategy__column-item">
+              <span class="strategy__item-bullet" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="9" cy="9" r="7.25" stroke="#E84C1E" stroke-width="1.2" stroke-dasharray="2 2" />
+                  <circle cx="9" cy="9" r="2.25" fill="#E84C1E" />
+                </svg>
+              </span>
+              <span>Figma</span>
+            </li>
+            <li class="strategy__column-item">
+              <span class="strategy__item-bullet" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="9" cy="9" r="7.25" stroke="#E84C1E" stroke-width="1.2" stroke-dasharray="2 2" />
+                  <circle cx="9" cy="9" r="2.25" fill="#E84C1E" />
+                </svg>
+              </span>
+              <span>Framer</span>
+            </li>
+            <li class="strategy__column-item">
+              <span class="strategy__item-bullet" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="9" cy="9" r="7.25" stroke="#E84C1E" stroke-width="1.2" stroke-dasharray="2 2" />
+                  <circle cx="9" cy="9" r="2.25" fill="#E84C1E" />
+                </svg>
+              </span>
+              <span>Google Meet</span>
+            </li>
+            <li class="strategy__column-item">
+              <span class="strategy__item-bullet" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="9" cy="9" r="7.25" stroke="#E84C1E" stroke-width="1.2" stroke-dasharray="2 2" />
+                  <circle cx="9" cy="9" r="2.25" fill="#E84C1E" />
+                </svg>
+              </span>
+              <span>React</span>
+            </li>
+            <li class="strategy__column-item">
+              <span class="strategy__item-bullet" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="9" cy="9" r="7.25" stroke="#E84C1E" stroke-width="1.2" stroke-dasharray="2 2" />
+                  <circle cx="9" cy="9" r="2.25" fill="#E84C1E" />
+                </svg>
+              </span>
+              <span>Tailwind CSS</span>
+            </li>
+            <li class="strategy__column-item">
+              <span class="strategy__item-bullet" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="9" cy="9" r="7.25" stroke="#E84C1E" stroke-width="1.2" stroke-dasharray="2 2" />
+                  <circle cx="9" cy="9" r="2.25" fill="#E84C1E" />
+                </svg>
+              </span>
+              <span>Figjam</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
     </section>
 
     <!-- =====================================================================
@@ -176,6 +397,15 @@
     </section>
 
   </main>
+
+  <script>
+    // Translate vertical mouse wheel delta into horizontal scroll
+    window.addEventListener('wheel', (e) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        window.scrollBy({ left: e.deltaY, behavior: 'auto' });
+      }
+    }, { passive: true });
+  </script>
 
 </body>
 

@@ -10,7 +10,7 @@
   /* Colors */
   --color-bg: #ffffff;
   --color-text: #1D2739;
-  --color-muted: #71717a;
+  --color-muted: #475367;
   --color-accent: #e84c1e;
   /* Vibrant orange-red for logo dot & accents */
   --color-eyebrow: #16a34a;
@@ -35,7 +35,7 @@
   --spacing-xl: 3rem;
 
   /* Fluid Typography clamp() tokens — reserved for H1 only */
-  --h1-clamp-hero: clamp(2.4rem, 4.8vw, 4.25rem);
+  --h1-clamp-hero: clamp(2.5rem, 5vw, 4.5rem);
   --h1-clamp-panel: clamp(2rem, 4.5vw, 3.75rem);
 }
 
@@ -52,13 +52,16 @@
 
 html {
   font-size: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 body.site-body {
   font-family: var(--font-body);
   background-color: var(--color-bg);
   color: var(--color-text);
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   /* Viewport-pinned horizontal scrolling */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -235,7 +238,7 @@ body.site-body {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 0 1.25%;
+  padding: 0 0.655%;
   position: relative;
   background-color: var(--color-bg);
 }
@@ -268,18 +271,37 @@ body.site-body {
   font-size: 0.875rem;
   font-weight: 600;
   color: var(--color-eyebrow);
-  letter-spacing: 0.02em;
-  margin-bottom: 1.35rem;
+  letter-spacing: 0%;
+  line-height: 100%;
+  /* margin-bottom: 1.35rem; */
   display: inline-flex;
   align-items: center;
 }
 
+.hero-eyebrow-child {
+  width: 10px;
+  height: 10px;
+  border-radius: 20px;
+  background-color: #E7F6EC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-eyebrow-child>span {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: #00BC7D;
+
+}
+
 /* H1 with clamp() and word-by-word mixed emphasis */
 .hero__heading {
-  font-family: var(--font-heading);
+  font-family: "Inter", sans-serif;
   font-size: var(--h1-clamp-hero);
-  font-weight: 800;
-  line-height: 1.12;
+  font-weight: 500;
+  line-height: 100%;
   letter-spacing: -0.035em;
   color: var(--color-text);
   margin-bottom: 1.5rem;
@@ -289,18 +311,20 @@ body.site-body {
 /* Muted / mid-gray weight for "design products" and "problems." */
 .hero__heading--muted {
   color: var(--color-muted);
-  font-weight: 600;
+  font-weight: 500;
 }
 
 /* Body paragraph (muted gray) */
 .hero__body {
-  font-size: 1.0625rem;
-  line-height: 1.65;
+  font-size: 1.75rem;
+  line-height: 120%;
   color: var(--color-muted);
-  margin-bottom: 2.25rem;
-  width: 90%;
+  margin-bottom: 2.5rem;
+  width: 92%;
   height: auto;
   font-weight: 400;
+  letter-spacing: -2%;
+
 }
 
 /* Buttons (rounded-full pills, not rectangles) */
@@ -318,13 +342,14 @@ body.site-body {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 0.55rem;
-  padding: 0.85rem 1.85rem;
-  font-size: 0.9375rem;
+  gap: 0.625rem;
+  padding: 1rem;
+  font-size: 1.25rem;
   font-weight: 600;
   text-decoration: none;
   border-radius: 9999px;
-  /* rounded-full */
+  line-height: 100%;
+  letter-spacing: 0%;
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -333,7 +358,7 @@ body.site-body {
 .hero__btn--primary {
   background-color: var(--color-pill-dark);
   color: #ffffff;
-  border: 1px solid var(--color-pill-dark);
+  border: 1px solid #98A2B3;
 }
 
 .hero__btn--primary:hover {
@@ -357,7 +382,7 @@ body.site-body {
   display: inline-block;
 }
 
-/* Graphic: right column, single <img> referencing torus asset */
+/* Graphic: right column, rotating torus image */
 .hero__graphic-img {
   width: 72%;
   max-width: 28rem;
@@ -365,42 +390,221 @@ body.site-body {
   display: block;
   object-fit: contain;
   filter: drop-shadow(0 20px 30px rgba(232, 76, 30, 0.15));
+  transform-origin: center;
+  animation: hero-spin 16s linear infinite;
+  will-change: transform;
 }
 
-/* Scroll indicator: BOTTOM-RIGHT under graphic column */
-.hero__scroll-indicator {
-  position: absolute;
-  bottom: 5%;
+@keyframes hero-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================================================
+   SHARED GLOBAL SCROLL INDICATOR (FIXED AT BOTTOM-RIGHT ACROSS ALL PANELS)
+   ========================================================================== */
+.scroll-indicator {
+  position: fixed;
+  bottom: 3.5%;
   right: 2.5%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-end;
   gap: 0.5rem;
   width: auto;
   height: auto;
-  z-index: 5;
-}
-
-/* Thin horizontal progress line ABOVE the label */
-.hero__scroll-track {
-  width: 5rem;
-  height: 2px;
-  background-color: var(--color-border);
-  border-radius: 1px;
-  overflow: hidden;
-}
-
-.hero__scroll-progress {
-  width: 38%;
-  height: 100%;
-  background-color: var(--color-text);
-  border-radius: 1px;
+  z-index: 50;
+  pointer-events: none;
 }
 
 /* "Scroll to Explore" (gray, sentence case) */
-.hero__scroll-label {
+.scroll-indicator__label {
   font-size: 0.8125rem;
   color: var(--color-muted);
   letter-spacing: 0.02em;
   font-weight: 500;
+  line-height: 100%;
+}
+
+/* Thin horizontal progress track */
+.scroll-indicator__track {
+  width: 7.5rem;
+  height: 3px;
+  background-color: var(--color-border);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.scroll-indicator__progress {
+  width: 35%;
+  height: 100%;
+  background-color: var(--color-text);
+  border-radius: 9999px;
+}
+
+/* --------------------------------------------------------------------------
+   7. PANEL 2: STRATEGY (TWO-COLUMN FLEX LAYOUT)
+   -------------------------------------------------------------------------- */
+.hz-panel--strategy {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.655%;
+  position: relative;
+  background-color: var(--color-bg);
+  height: auto;
+}
+
+/* Left Column (~35-40% width): Heading + Two Body Paragraphs */
+.strategy__intro {
+  flex: 0 0 36%;
+  width: 36%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* H1 with clamp() and word-by-word mixed emphasis matching Hero */
+.strategy__heading {
+  font-family: "Inter", sans-serif;
+  font-size: var(--h1-clamp-hero);
+  font-weight: 500;
+  line-height: 102%;
+  letter-spacing: -0.035em;
+  color: var(--color-text);
+  margin-bottom: 3.25rem;
+  width: 100%;
+  height: auto;
+}
+
+.strategy__heading--muted {
+  color: #858D9D;
+  font-weight: 500;
+}
+
+/* Body container holding both paragraphs */
+.strategy__body {
+  width: 90%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.strategy__paragraph {
+  font-size: 1.0625rem;
+  line-height: 155%;
+  color: var(--color-muted);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  margin: 0;
+  width: 100%;
+  height: auto;
+}
+
+/* Right Column (~60-65% width): Three sub-columns in flex row */
+.strategy__columns {
+  flex: 0 0 60%;
+  width: 60%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+/* Sub-column generic styling */
+.strategy__column {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Sub-column percentage widths */
+.strategy__column--think {
+  flex: 0 0 28%;
+  width: 28%;
+}
+
+.strategy__column--do {
+  flex: 0 0 46%;
+  width: 46%;
+}
+
+.strategy__column--tools {
+  flex: 0 0 20%;
+  width: 20%;
+}
+
+/* Column icon at top */
+.strategy__column-icon {
+  margin-bottom: 1.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+}
+
+/* Sub-column heading (e.g. "How we think", "What we do", "Tools we use") */
+.strategy__column-heading {
+  font-family: "Inter", sans-serif;
+  font-size: 1.625rem;
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 115%;
+  letter-spacing: -0.025em;
+  margin-bottom: 1.85rem;
+  width: 100%;
+  height: auto;
+}
+
+/* Bulleted list */
+.strategy__column-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+/* List item row */
+.strategy__column-item {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.625rem;
+  width: 100%;
+  height: auto;
+  font-size: 0.9375rem;
+  color: var(--color-text);
+  font-weight: 500;
+  line-height: 135%;
+  letter-spacing: -0.01em;
+}
+
+.strategy__column-item > span:last-child {
+  white-space: nowrap;
+}
+
+/* Circular target/dot bullet icon */
+.strategy__item-bullet {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  margin-top: 0.1rem;
 }
