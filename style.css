@@ -399,6 +399,7 @@ body.site-body {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -474,12 +475,12 @@ body.site-body {
 /* H1 with clamp() and word-by-word mixed emphasis matching Hero */
 .strategy__heading {
   font-family: "Inter", sans-serif;
-  font-size: var(--h1-clamp-hero);
+  font-size: clamp(2rem, 3.61vw, 3.25rem);
   font-weight: 500;
-  line-height: 102%;
+  line-height: 100%;
   letter-spacing: -0.035em;
   color: var(--color-text);
-  margin-bottom: 3.25rem;
+  margin-bottom: 6.25rem;
   width: 100%;
   height: auto;
 }
@@ -491,7 +492,7 @@ body.site-body {
 
 /* Body container holding both paragraphs */
 .strategy__body {
-  width: 90%;
+  width: 84%;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -499,11 +500,11 @@ body.site-body {
 }
 
 .strategy__paragraph {
-  font-size: 1.0625rem;
-  line-height: 155%;
-  color: var(--color-muted);
+  font-size: 1.25rem;
+  line-height: 123%;
+  color: #344054;
   font-weight: 400;
-  letter-spacing: -0.01em;
+  letter-spacing: 1.5%;
   margin: 0;
   width: 100%;
   height: auto;
@@ -513,6 +514,7 @@ body.site-body {
 .strategy__columns {
   flex: 0 0 60%;
   width: 60%;
+  margin-top: 14.5rem;
   height: auto;
   display: flex;
   flex-direction: row;
@@ -531,7 +533,7 @@ body.site-body {
 /* Sub-column percentage widths */
 .strategy__column--think {
   flex: 0 0 28%;
-  width: 28%;
+  width: 32%;
 }
 
 .strategy__column--do {
@@ -546,7 +548,7 @@ body.site-body {
 
 /* Column icon at top */
 .strategy__column-icon {
-  margin-bottom: 1.85rem;
+  margin-bottom: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -557,12 +559,12 @@ body.site-body {
 /* Sub-column heading (e.g. "How we think", "What we do", "Tools we use") */
 .strategy__column-heading {
   font-family: "Inter", sans-serif;
-  font-size: 1.625rem;
+  font-size: 1.75rem;
   font-weight: 600;
   color: var(--color-text);
-  line-height: 115%;
-  letter-spacing: -0.025em;
-  margin-bottom: 1.85rem;
+  line-height: 123%;
+  letter-spacing: 1%;
+  margin-bottom: 1.5rem;
   width: 100%;
   height: auto;
 }
@@ -587,14 +589,14 @@ body.site-body {
   gap: 0.625rem;
   width: 100%;
   height: auto;
-  font-size: 0.9375rem;
-  color: var(--color-text);
-  font-weight: 500;
-  line-height: 135%;
-  letter-spacing: -0.01em;
+  font-size: 1rem;
+  color: #344054;
+  font-weight: 400;
+  line-height: 123%;
+  letter-spacing: 1%;
 }
 
-.strategy__column-item > span:last-child {
+.strategy__column-item>span:last-child {
   white-space: nowrap;
 }
 
