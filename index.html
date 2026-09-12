@@ -11,7 +11,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Syne:wght@700;800&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=1.1">
+  <link rel="stylesheet" href="style.css?v=1.6">
 </head>
 
 <body class="site-body">
@@ -362,20 +362,95 @@
     </section>
 
     <!-- =====================================================================
-         PANEL 3: PHILOSOPHY
+         PANEL 3: SELECTED WORK
+         ===================================================================== -->
+    <section class="hz-panel hz-panel--work" id="work" data-panel="work">
+      <!-- <div class="Section-3-container"> -->
+      <h1 class="work__heading">
+        Selected<br>
+        <span class="work__heading--muted">Work</span>
+      </h1>
+
+      <div class="work__grid">
+
+        <!-- Row 1: Neon.Finance & MealPlanning App -->
+        <div class="work__row">
+
+          <article class="work__card">
+            <div class="work__card-image">
+              <img class="work__card-img" src="assets/IMG1.png" alt="Neon.Finance project mockup">
+              <div class="work__card-overlay" aria-hidden="true">
+                <span>View</span>
+                <span>Work</span>
+              </div>
+            </div>
+            <h2 class="work__card-title">Neon.Finance</h2>
+            <p class="work__card-description">Built a data-heavy dashboard for crypto traders that reduced decision
+              time by 40%.</p>
+            <p class="work__card-meta">Product strategy · UX design · Framer development</p>
+          </article>
+
+          <article class="work__card">
+            <div class="work__card-image">
+              <img class="work__card-img" src="assets/IMG3.png" alt="MealPlanning App project mockup">
+              <div class="work__card-overlay" aria-hidden="true">
+                <span>View</span>
+                <span>Work</span>
+              </div>
+            </div>
+            <h2 class="work__card-title">MealPlanning App</h2>
+            <p class="work__card-description">Designed a meal planning app for busy professionals that increased
+              weekly meal prep by 3x.</p>
+            <p class="work__card-meta">Product design · Mobile UX · User research</p>
+          </article>
+
+        </div>
+
+        <!-- Row 2: ClinicHub & Borough -->
+        <div class="work__row">
+
+          <article class="work__card">
+            <div class="work__card-image">
+              <img class="work__card-img" src="assets/IMG4.png" alt="ClinicHub project mockup">
+              <div class="work__card-overlay" aria-hidden="true">
+                <span>View</span>
+                <span>Work</span>
+              </div>
+            </div>
+            <h2 class="work__card-title">ClinicHub</h2>
+            <p class="work__card-description">Built a patient scheduling and records system for small clinics,
+              reducing admin time by 60%.</p>
+            <p class="work__card-meta">Healthcare UX · Design systems</p>
+          </article>
+
+          <article class="work__card">
+            <div class="work__card-image">
+              <img class="work__card-img" src="assets/IMG2.png" alt="Borough project mockup">
+              <div class="work__card-overlay" aria-hidden="true">
+                <span>View</span>
+                <span>Work</span>
+              </div>
+            </div>
+            <h2 class="work__card-title">Borough</h2>
+            <p class="work__card-description">Designed a property search experience that increased qualified leads by
+              45% through better filtering.</p>
+            <p class="work__card-meta">Real estate UX · Web design</p>
+          </article>
+
+        </div>
+
+      </div>
+
+      <!-- </div> -->
+
+    </section>
+
+    <!-- =====================================================================
+         PANEL 4: PHILOSOPHY
          ===================================================================== -->
     <section class="hz-panel hz-panel--philosophy" id="philosophy" data-panel="philosophy">
       <h1 class="hz-panel__title">How We Think About Design</h1>
       <!-- CONTENT SLOT: Future editorial manifesto and typography blocks go here -->
-      <div class="hz-panel__content"></div>
-    </section>
-
-    <!-- =====================================================================
-         PANEL 4: SELECTED WORK
-         ===================================================================== -->
-    <section class="hz-panel hz-panel--work" id="work" data-panel="work">
-      <h1 class="hz-panel__title">Selected Work</h1>
-      <!-- CONTENT SLOT: Future portfolio showcase cards go here -->
       <div class="hz-panel__content"></div>
     </section>
 
@@ -406,6 +481,58 @@
         window.scrollBy({ left: e.deltaY, behavior: 'auto' });
       }
     }, { passive: true });
+
+    // Feature 1: Left/Right Arrow Key Navigation
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+        e.preventDefault();
+        const panelWidth = window.innerWidth;
+        const currentIndex = Math.round(window.scrollX / panelWidth);
+        const panels = document.querySelectorAll('.hz-panel');
+        const maxIndex = panels.length > 0 ? panels.length - 1 : 5;
+
+        let targetIndex = currentIndex;
+        if (e.key === 'ArrowRight') {
+          targetIndex = Math.min(maxIndex, currentIndex + 1);
+        } else if (e.key === 'ArrowLeft') {
+          targetIndex = Math.max(0, currentIndex - 1);
+        }
+
+        window.scrollTo({
+          left: targetIndex * panelWidth,
+          behavior: 'smooth'
+        });
+      }
+    });
+
+    // Feature 2: Functional Scroll Progress Indicator
+    const progressIndicator = document.querySelector('.scroll-indicator__progress');
+
+    function updateScrollProgress() {
+      const maxScroll = document.documentElement.scrollWidth - window.innerWidth;
+      const progress = maxScroll > 0
+        ? (window.scrollX / maxScroll) * 100
+        : 0;
+
+      if (progressIndicator) {
+        progressIndicator.style.width = `${Math.min(100, Math.max(0, progress))}%`;
+      }
+    }
+
+    let isScrollTicking = false;
+    window.addEventListener('scroll', () => {
+      if (!isScrollTicking) {
+        window.requestAnimationFrame(() => {
+          updateScrollProgress();
+          isScrollTicking = false;
+        });
+        isScrollTicking = true;
+      }
+    }, { passive: true });
+
+    // Update progress on page load / restore
+    window.addEventListener('load', updateScrollProgress);
+    updateScrollProgress();
   </script>
 
 </body>
