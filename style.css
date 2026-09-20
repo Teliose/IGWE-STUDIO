@@ -776,6 +776,107 @@ body.site-body {
   margin: 0;
 }
 
+/* --------------------------------------------------------------------------
+   9. PANEL 4: PHILOSOPHY (VERTICAL STACK: H1 + THREE-COLUMN FLEX ROW)
+   -------------------------------------------------------------------------- */
+.hz-panel--philosophy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: relative;
+  background-color: var(--color-bg);
+  height: auto;
+  padding-top: calc(var(--header-height) + 2.5rem);
+  padding-bottom: 3rem;
+  gap: 6rem;
+}
+
+/* Heading: clamp-sized, two lines, alternating emphasis */
+.philosophy__heading {
+  font-family: "Inter", sans-serif;
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  font-weight: 500;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: var(--color-text);
+  margin: 0;
+  width: 32%;
+}
+
+.philosophy__heading--muted {
+  color: #98A2B3;
+  font-weight: 500;
+}
+
+/* Full-width flex row of three equal columns */
+.philosophy__columns {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  height: auto;
+  /* gap: 5%; */
+}
+
+/* Individual Column (~30% width) */
+.philosophy__column {
+  flex: 0 0 28%;
+  width: 30%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+/* 3D Icon Graphic */
+.philosophy__icon {
+  width: 18%;
+  max-width: 3.25rem;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  display: block;
+}
+
+/* Column Heading */
+.philosophy__column-heading {
+  font-family: "Inter", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 100%;
+  letter-spacing: 0%;
+  margin: 0;
+}
+
+/* Stacked Paragraphs Body */
+.philosophy__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  height: auto;
+}
+
+/* Paragraph styling */
+.philosophy__paragraph {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 123%;
+  letter-spacing: 0.5%;
+  color: #475467;
+  margin: 0;
+}
+
+.philosophy__paragraph:first-child {
+  font-weight: 400;
+  color: #344054;
+}
+
 /* Responsive adjustments for tablet / mobile viewports */
 @media (max-width: 768px) {
   .hz-panel--work {
@@ -806,5 +907,25 @@ body.site-body {
   .work__card {
     flex: 0 0 100%;
     width: 100%;
+  }
+
+  .hz-panel--philosophy {
+    gap: 2rem;
+    overflow-y: auto;
+    padding-bottom: 2rem;
+  }
+
+  .philosophy__columns {
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .philosophy__column {
+    flex: 0 0 100%;
+    width: 100%;
+  }
+
+  .philosophy__icon {
+    width: 3.25rem;
   }
 }
