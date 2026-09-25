@@ -249,7 +249,8 @@
 }
 
 .cta__graphic-img {
-    width: 100%;
+    width: 50%;
+    max-width: 32rem;
     height: auto;
     aspect-ratio: 1 / 1;
     object-fit: contain;
